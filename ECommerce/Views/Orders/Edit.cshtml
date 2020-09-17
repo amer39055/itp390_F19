@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<Ecommerce.Models.ApplicationUser> UserManager
+
+@model ECommerce.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
+            {
+                <div class="form-group">
+                    <label asp-for="OrderNotes" class="control-label"></label>
+                    <input asp-for="OrderNotes" class="form-control" />
+                    <span asp-validation-for="OrderNotes" class="text-danger"></span>
+                </div>
+            }
+            else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Succeeded)
+            {
+                <div class="form-group">
+                    <label asp-for="OrderStatus" class="control-label"></label>
+                    <select asp-for="OrderStatus" class="form-control">
+                        <option value="Opened">Opened</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Rejected">Rejected</option>
+
+                    </select>
+                    <span asp-validation-for="OrderStatus" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
+    {
+        <a asp-controller="Orders" asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+    }
+    else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Succeeded)
+    {
+        <a asp-controller="Orders" asp-action="ServiceProviderOrders" asp-route-SproviderId="@UserManager.GetUserId(User)">Back to List</a>
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

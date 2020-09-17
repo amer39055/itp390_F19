@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ECommerce.Models.Order>
+
+@{
+    ViewData["Title"] = "Customer Orders";
+}
+
+<h2>Customer Orders</h2>
+<br />
+
+<table class="table table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Sprovider.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th width="18%">
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Sprovider.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    <div style="margin: auto; width:50%;">
+                        @*<span>Rate: </span>*@
+                        @{
+                            var counter = 0;
+                            for (int i = 0; i < item.Rating; i += 20)
+                            {
+                                counter++;
+                                <i class="fa fa-star" style="color:goldenrod; align-content:center"></i>
+                            }
+                            for (int i = 0; i < 5 - counter; i++)
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if (item.OrderStatus == "Opened")
+                    {
+                        <p class="btn btn-primary disabled">@item.OrderStatus</p>
+                    }
+                    else if (item.OrderStatus == "Closed")
+                    {
+                        <p class="btn btn-success disabled">@item.OrderStatus</p>
+                    }
+                    else if (item.OrderStatus == "Rejected")
+                    {
+                        <p class="btn btn-danger disabled">@item.OrderStatus</p>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Rate" asp-route-id="@item.Id">Rate</a> |
+                    <a asp-action="Create" asp-controller="Disputes" asp-route-orderId="@item.Id" asp-route-CustomerId="@item.CustomerId">Open Complaint</a> |
+                    @if (item.OrderStatus=="Opened")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> | </span>
+                    }
+                  
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

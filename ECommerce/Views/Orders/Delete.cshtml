@@ -1,0 +1,209 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Ecommerce.Models.ApplicationUser> UserManager
+@model ECommerce.Models.Order
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <br />
+
+    @*Order*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Order
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Id
+                </td>
+                <td>
+                    @Model.OrderDate
+                </td>
+                <td>
+                    @Model.OrderNotes
+                </td>
+                <td>
+                    @Model.OrderStatus
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Service Provider*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="5">
+                    Service Provider: @Model.Service.Sprovider.CompanyName
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Service.Sprovider.User.FullName
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.PhoneNumber
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.Email
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.Address
+                </td>
+                <td>
+                    <img src="~/uploads/sprovider/@Model.Service.Sprovider.Image" alt="@Model.Service.Sprovider.CompanyName" style="width:160px; height:160px;" class="img-thumbnail" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Service*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Service
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    ExpectedTime
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Service.Name
+                </td>
+                <td>
+                    @Model.Service.Description
+                </td>
+                <td>
+                    @Model.Service.ExpectedTime
+                </td>
+                <td>
+                    <img src="~/uploads/service/@Model.Service.Image" alt="@Model.Service.Name" style="width:160px; height:160px;" class="img-thumbnail" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Customer*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Customer
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Customer.FullName
+                </td>
+                <td>
+                    @Model.Customer.PhoneNumber
+                </td>
+                <td>
+                    @Model.Customer.Email
+                </td>
+                <td>
+                    @Model.Customer.Address
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+    </form>
+</div>

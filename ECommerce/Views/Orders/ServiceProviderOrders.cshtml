@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ECommerce.Models.Order>
+
+@{
+    ViewData["Title"] = "ServiceProviderOrders";
+}
+<style>
+ 
+</style>
+<h2>Comming Orders</h2>
+<br />
+<table class="table table-striped table-bordered table-responsive">
+    <thead class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingNotes)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNotes)
+            </td>
+            <td>
+                <div style="margin: auto; width:50%;">
+                    @*<span>Rate: </span>*@
+                    @{
+                        var counter = 0;
+                        for (int i = 0; i < item.Rating; i += 20)
+                        {
+                            counter++;
+                            <i class="fa fa-star" style="color:goldenrod; align-content:center"></i>
+                        }
+                        for (int i = 0; i < 5 - counter; i++)
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingNotes)
+            </td>
+
+            <td>
+                @if (item.OrderStatus == "Opened")
+                {
+                    <p class="btn btn-primary disabled">@item.OrderStatus</p>
+                }
+                else if (item.OrderStatus == "Closed")
+                {
+                    <p class="btn btn-success disabled">@item.OrderStatus</p>
+                }
+                else if (item.OrderStatus == "Rejected")
+                {
+                    <p class="btn btn-danger disabled">@item.OrderStatus</p>
+                }
+            </td>
+            <td>
+                @if (item.OrderStatus != "Closed")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> | </span>
+                }
+
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

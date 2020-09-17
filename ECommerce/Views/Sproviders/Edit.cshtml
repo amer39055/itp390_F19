@@ -1,0 +1,72 @@
+﻿@model ECommerce.Models.Sprovider
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Sprovider</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Sproviders" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" asp-for="Image" class="form-control changeImage" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <br />
+                <div style="width:160px; height:160px;" class="table table-bordered">
+                    <img src="~/uploads/sprovider/@Model.Image" alt="@Model.Image" style="width:160px; height:160px;" class="change_edit img-thumbnail" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+        $(function(){
+                  $('.changeImage').change(function(){
+                    var input = this;
+                    var url = $(this).val();
+                    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                        if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg"))
+                         {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e)
+                            {
+                               $('.change_edit').attr('src', e.target.result);
+                            }
+                           reader.readAsDataURL(input.files[0]);
+                        }
+                        else
+                        {
+                            $('.change_edit').attr('src', '/uploads/@Model.Image');
+                        }
+                });
+        });
+</script>

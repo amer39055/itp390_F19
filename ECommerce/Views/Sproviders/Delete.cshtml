@@ -1,0 +1,122 @@
+﻿@model ECommerce.Models.Sprovider
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sprovider</h4>
+    <hr />
+    @*Service Provider*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Service Provider Manager
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.User.FullName
+                </td>
+                <td>
+                    @Model.User.PhoneNumber
+                </td>
+                <td>
+                    @Model.User.Email
+                </td>
+                <td>
+                    @Model.User.Address
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <br />
+
+    @*Company*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Service Provider
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Category.Name
+                </td>
+                <td>
+                    @Model.CompanyName
+                </td>
+                <td>
+                    <div style="margin: auto; width:50%;">
+                        @*<span>Rate: </span>*@
+                        @{
+                            var counter = 0;
+                            for (int i = 0; i < Model.Rating; i += 20)
+                            {
+                                counter++;
+                                <i class="fa fa-star" style="color:goldenrod; align-content:center"></i>
+                            }
+                            for (int i = 0; i < 5 - counter; i++)
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                        }
+                    </div>
+                </td>
+                <td>
+                    <img src="~/uploads/sprovider/@Model.Image" alt="@Model.CompanyName" style="width:160px; height:160px;" class="img-thumbnail" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

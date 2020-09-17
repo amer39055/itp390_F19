@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Ecommerce.Models.ApplicationUser> UserManager
+
+
+@model IEnumerable<ECommerce.Models.Dispute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenedDate)
+            </th>
+            <th>
+                Arbiter
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Complaint)
+            </th>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Customer FullName
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpenedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arbiter.FullName
+           )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complaint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Service.Sprovider.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Customer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @if (item.Status == "Opened")
+                {
+                    <p class="btn btn-primary disabled">@item.Status</p>
+                }
+                else if (item.Status == "Closed")
+                {
+                    <p class="btn btn-success disabled">@item.Status</p>
+                }
+                else if (item.Status == "OnProgress")
+                {
+                    <p class="btn btn-warning disabled">@item.Status</p>
+                }
+            </td>
+            <td>
+                @if (item.Status != "Closed")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span> | </span>
+                }
+
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (item.ArbiterId == null)
+                {
+                    <span> | </span> <a asp-action="TakeDispute" asp-route-id="@item.Id" asp-route-arbiterId="@UserManager.GetUserId(User)">Take</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@model Ecommerce.Models.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <br />
+                <div style="width:160px; height:160px;" class="table table-bordered">
+                    <img src="" class="img img-thumbnail" style="width:160px; height:160px; visibility:hidden;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="~/js/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("input").change(function (e) {
+            for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+                var file = e.originalEvent.srcElement.files[i];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    $('.img').css({ "visibility": "visible" });
+                    $('.img').css({ "display": "block" });
+                    $('.img').attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+                $("input").after(img);
+            }
+        });
+    });
+</script>

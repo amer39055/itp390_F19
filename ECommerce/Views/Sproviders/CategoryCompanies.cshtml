@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ECommerce.Models.Sprovider>
+
+@{
+    ViewData["Title"] = "Category Companies";
+}
+<br />
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading"><h2>@ViewBag.category.Name</h2></div>
+    <div class="row panel-body" style="padding-left:40px;">
+        <h4>@ViewBag.category.Description</h4>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 thumbnail" style="height: 280px; width: 250px; margin: 10px; ">
+                <a asp-controller="Services" asp-action="CompanyServices" asp-route-SproviderId="@item.Id" style="text-decoration:none;color:black">
+                    <img src="~/uploads/sprovider/@item.Image" style="height:175px; width:200px;" />
+                    <h3 style="text-align:center">@Html.DisplayFor(modelItem => item.CompanyName)</h3>
+                </a>
+                <div style="margin: auto; width:50%;">
+                    @*<span>Rate: </span>*@
+                    @{
+                        var counter = 0;
+                        for (int i = 0; i < item.Rating; i += 20)
+                        {
+                            counter++;
+                            <i class="fa fa-star" style="color:goldenrod; align-content:center"></i>
+                        }
+                        for (int i = 0; i < 5 - counter; i++)
+                        {
+                            <i class="fa fa-star" ></i>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Identity
+@using Ecommerce.Models
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+            {
+                <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">«÷«›… „ÊŸ›</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/Registersprovider">«÷«›… „ﬁœ„ Œœ„…</a></li>
+            }
+
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link"> ”ÃÌ· Œ—ÊÃ</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+
+    <ul class="nav navbar-nav navbar-right">
+        @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+        {
+            <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">«÷«›… „ÊŸ›</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Registersprovider">«÷«›… „ﬁœ„ Œœ„…</a></li>
+        }
+        else
+        {
+            <li><a asp-area="Identity" asp-page="/Account/Register"> ”ÃÌ· ÃœÌœ</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Login"> ”ÃÌ· œŒÊ·</a></li>
+        }
+
+
+    </ul>
+}

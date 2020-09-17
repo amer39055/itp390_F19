@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ECommerce.Models.Service>
+
+@{
+    ViewData["Title"] = "CompanyServices";
+}
+<br />
+
+@if (@Model.FirstOrDefault() != null)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+            <div>
+                <img src="~/uploads/sprovider/@Model.FirstOrDefault().Sprovider.Image" style="height:175px; width:200px;" />
+            </div>
+            <br />
+        </div>
+        <div class="row panel-body" style="padding-left:40px;">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 thumbnail" style="height: 280px; width: 250px; margin: 10px; ">
+                    <a asp-controller="Services" asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none;color:black">
+                        <img src="~/uploads/service/@item.Image" style="height:175px; width:200px;" />
+                        <h3 style="text-align:center">@item.Name Services:</h3>
+                    </a>
+
+                    <h4>
+                        Price: @item.Price
+                    </h4>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>Empty</h2>
+        </div>
+    </div>
+}
+
+
+@*<img src="~/uploads/sprovider/@Model.FirstOrDefault().Sprovider.Image" style="height:75px; width:100px;border-radius:50%" />
+
+    <h2> @Model.FirstOrDefault().Sprovider.CompanyName Services:</h2>
+
+
+    <div class="card" style="width: 100%;" dir="ltr">
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model)
+            {
+                <a asp-controller="Services" asp-action="Details" asp-route-id="@item.Id"style="text-decoration:none" >
+                    <li class="list-group-item">
+                        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <img src="~/uploads/service/@item.Image" style="height:175px; width:200px;" />
+                    </li>
+                </a>
+                <br />
+            }
+        </ul>
+    </div>*@
+

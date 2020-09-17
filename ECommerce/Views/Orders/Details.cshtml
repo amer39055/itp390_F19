@@ -1,0 +1,272 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<Ecommerce.Models.ApplicationUser> UserManager
+
+@model ECommerce.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+@*Order*@
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th colspan="4">
+                Order
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Notes
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Id
+            </td>
+            <td>
+                @Model.OrderDate
+            </td>
+            <td>
+                @Model.OrderNotes
+            </td>
+            <td>
+                @Model.OrderStatus
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<br />
+
+@if (!(await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
+{
+    @*Service Provider*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Service Provider Manager
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Service.Sprovider.User.FullName
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.PhoneNumber
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.Email
+                </td>
+                <td>
+                    @Model.Service.Sprovider.User.Address
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+}
+
+@*Company*@
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th colspan="4">
+                Service Provider
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Image
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Service.Sprovider.Category.Name
+            </td>
+            <td>
+                @Model.Service.Sprovider.CompanyName
+            </td>
+            <td>
+                <div style="margin: auto; width:50%;">
+                    @*<span>Rate: </span>*@
+                    @{
+                        var counter = 0;
+                        for (int i = 0; i < Model.Rating; i += 20)
+                        {
+                            counter++;
+                            <i class="fa fa-star" style="color:goldenrod; align-content:center"></i>
+                        }
+                        for (int i = 0; i < 5 - counter; i++)
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                    }
+                </div>
+            </td>
+            <td>
+                <img src="~/uploads/sprovider/@Model.Service.Sprovider.Image" alt="@Model.Service.Sprovider.CompanyName" style="width:160px; height:160px;" class="img-thumbnail" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<br />
+
+@*Service*@
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th colspan="4">
+                Service
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                ExpectedTime
+            </th>
+            <th>
+                Image
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Service.Name
+            </td>
+            <td>
+                @Model.Service.Description
+            </td>
+            <td>
+                @Model.Service.ExpectedTime
+            </td>
+            <td>
+                <img src="~/uploads/service/@Model.Service.Image" alt="@Model.Service.Name" style="width:160px; height:160px;" class="img-thumbnail" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<br />
+
+@*Customer*@
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th colspan="4">
+                Customer
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Address
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Customer.FullName
+            </td>
+            <td>
+                @Model.Customer.PhoneNumber
+            </td>
+            <td>
+                @Model.Customer.Email
+            </td>
+            <td>
+                @Model.Customer.Address
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
+{
+    <a asp-controller="Orders" asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+}
+else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Succeeded)
+{
+    <a asp-controller="Orders" asp-action="ServiceProviderOrders" asp-route-SproviderId="@UserManager.GetUserId(User)">Back to List</a>
+}
+else if ((await AuthorizationService.AuthorizeAsync(User, "Admin_CustomerService")).Succeeded)
+{
+    <a asp-controller="Orders" asp-action="Index">Back to List</a>
+}
+<div>
+</div>

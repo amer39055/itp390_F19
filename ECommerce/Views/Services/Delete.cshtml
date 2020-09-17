@@ -1,0 +1,61 @@
+﻿@model ECommerce.Models.Service
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Service</h4>
+    <hr />
+    <table class="table table-striped table-bordered table-responsive">
+        <tr>
+            <th>
+                Service Provider
+            </th>
+            <td>
+                @Model.Sprovider.CompanyName
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Service Name
+            </th>
+            <td>
+                @Model.Name
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Price
+            </th>
+            <td>
+                @Model.Price
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Expected Time
+            </th>
+            <td>
+                @Model.ExpectedTime
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Image
+            </th>
+            <td>
+                <img src="~/uploads/service/@Model.Image" alt="@Model.Name" style="width:160px; height:160px;" class="img-thumbnail" />
+            </td>
+        </tr>
+    </table>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-route-SproviderId="@Model.SproviderId">Back to List</a>
+    </form>
+</div>

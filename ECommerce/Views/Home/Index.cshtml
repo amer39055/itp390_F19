@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ECommerce.Models.Category>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using Ecommerce.Areas.Identity.Pages;
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" style="height:523px">
+            <img src="~/images/banner1.jpg" alt="ASP.NET" style="width:100%; height:523px;" class="responsive img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    تواصل مع الحرفيين مباشرة دون حاجة لزيارة الورشات ومكاتب التوظيف
+                </p>
+            </div>
+        </div>
+        <div class="item" style=" height: 523px;">
+            <img src="~/images/banner2.jpg" alt="Visual Studio" style="width:100%; height:523px;" class="responsive img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                     الخدمة ستصلك الى منزلك
+                </p>
+            </div>
+        </div>
+        <div class="item" style="height: 523px">
+            <img src="~/images/banner3.jpg" alt="Microsoft Azure" style="width:100%; height:523px;" class="responsive img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                   اذا كنت صاحب حرفة او مهارة فمكانك هنا
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<br />
+<h1 style="text-align:center" id="Categories">تصنيفات الخدمات</h1>
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+            <a asp-controller="Sproviders" asp-action="CategoryCompanies" asp-route-catId="@item.Id" style="text-decoration:none;">
+                <div style="text-align:center">
+                    <img class="card-img-top" src="~/uploads/category/@item.Image" alt="..." style="width:150px; height:150px;">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align:center; color:black">@item.Name</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+<div class="row">
+
+</div>

@@ -1,0 +1,322 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<Ecommerce.Models.ApplicationUser> UserManager
+
+@model ECommerce.Models.Dispute
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dispute</h4>
+    <hr />
+
+    @*Dispute*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Dispute
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Opened Date
+                </th>
+                <th>
+                    Complaint
+                </th>
+                <th>
+                    Result
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.OpenedDate
+                </td>
+                <td>
+                    @Model.Complaint
+                </td>
+                <td>
+                    @Model.Result
+                </td>
+                <td>
+                    @Model.Status
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @if (Model.Arbiter != null)
+    {
+        @*Abriter*@
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        Abriter
+                    </th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Model.Arbiter.FullName
+                    </td>
+                    <td>
+                        @Model.Arbiter.PhoneNumber
+                    </td>
+                    <td>
+                        @Model.Arbiter.Email
+                    </td>
+                    <td>
+                        @Model.Arbiter.Address
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+
+    <br />
+    <br />
+
+    @*Order*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Order
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Order.Id
+                </td>
+                <td>
+                    @Model.Order.OrderDate
+                </td>
+                <td>
+                    @Model.Order.OrderNotes
+                </td>
+                <td>
+                    @Model.Order.OrderStatus
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Service Provider*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="5">
+                    Service Provider: @Model.Order.Service.Sprovider.CompanyName
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Order.Service.Sprovider.User.FullName
+                </td>
+                <td>
+                    @Model.Order.Service.Sprovider.User.PhoneNumber
+                </td>
+                <td>
+                    @Model.Order.Service.Sprovider.User.Email
+                </td>
+                <td>
+                    @Model.Order.Service.Sprovider.User.Address
+                </td>
+                <td>
+                    <img src="~/uploads/sprovider/@Model.Order.Service.Sprovider.Image" alt="@Model.Order.Service.Sprovider.CompanyName" style="width:160px; height:160px;" class="img-thumbnail" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Service*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Service
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    ExpectedTime
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Order.Service.Name
+                </td>
+                <td>
+                    @Model.Order.Service.Description
+                </td>
+                <td>
+                    @Model.Order.Service.ExpectedTime
+                </td>
+                <td>
+                    <img src="~/uploads/service/@Model.Order.Service.Image" alt="@Model.Order.Service.Name" style="width:160px; height:160px;" class="img-thumbnail" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    @*Customer*@
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Customer
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Order.Customer.FullName
+                </td>
+                <td>
+                    @Model.Order.Customer.PhoneNumber
+                </td>
+                <td>
+                    @Model.Order.Customer.Email
+                </td>
+                <td>
+                    @Model.Order.Customer.Address
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+</div>
+
+<div>
+    @if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
+    {
+        <a asp-controller="Disputes" asp-action="CustomerDisputes" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+    }
+    else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Succeeded)
+    {
+        <a asp-controller="Disputes" asp-action="CompanyDisputes" asp-route-SproviderId="@UserManager.GetUserId(User)">Back to List</a>
+    }
+    else if ((await AuthorizationService.AuthorizeAsync(User, "Admin_CustomerService")).Succeeded)
+    {
+        @if (Model.Status != "Closed" && UserManager.GetUserId(User) ==Model.ArbiterId )
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <span> | </span>
+        }
+        <a asp-controller="Disputes" asp-action="Index">Back to List</a>
+    }
+</div>
