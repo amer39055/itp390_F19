@@ -7,9 +7,11 @@ namespace ECommerce.Models
     public partial class Dispute
     {
         public int Id { get; set; }
+        [Display(Name ="رقم الطلبية")]
         public int OrderId { get; set; }
         [Display(Name="تاريخ البدء")]
         public DateTime OpenedDate { get; set; }
+        [Display(Name ="رقم الموظف")]
         public string ArbiterId { get; set; }
         [Display(Name = "المشتكي")]
         public string Complaint { get; set; }

@@ -9,10 +9,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>تفاصيل</h2>
 
 <div>
-    <h4>Dispute</h4>
+    <h4>منازعات</h4>
     <hr />
 
     @*Dispute*@
@@ -20,23 +20,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Dispute
+                    المنازعة
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Opened Date
+                    تاريخ البدء
                 </th>
                 <th>
-                    Complaint
+                    المشتكي
                 </th>
                 <th>
-                    Result
+                    النتيجة
                 </th>
                 <th>
-                    Status
+                    الحالة
                 </th>
             </tr>
         </thead>
@@ -68,23 +68,23 @@
             <thead>
                 <tr>
                     <th colspan="4">
-                        Abriter
+                        الموظف
                     </th>
                 </tr>
             </thead>
             <thead>
                 <tr>
                     <th>
-                        Name
+                        الاسم
                     </th>
                     <th>
-                        Phone Number
+                        رقم الهاتف
                     </th>
                     <th>
-                        Email
+                        الايميل
                     </th>
                     <th>
-                        Address
+                        العنوان
                     </th>
                 </tr>
             </thead>
@@ -115,23 +115,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Order
+                    الطلبية
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Id
+                    رقم الطلبية
                 </th>
                 <th>
-                    Date
+                    تاريخ الطلب
                 </th>
                 <th>
-                    Notes
+                    ملاحظات
                 </th>
                 <th>
-                    Status
+                    الحالة
                 </th>
             </tr>
         </thead>
@@ -168,19 +168,19 @@
         <thead>
             <tr>
                 <th>
-                    Name
+                    اسم البائع
                 </th>
                 <th>
-                    Phone Number
+                    رقم الهاتف
                 </th>
                 <th>
-                    Email
+                    الايميل
                 </th>
                 <th>
-                    Address
+                    العنوان
                 </th>
                 <th>
-                    Image
+                    صورة 
                 </th>
             </tr>
         </thead>
@@ -213,23 +213,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Service
+                    الخدمة المقدمة
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                    اسم الخدمة
                 </th>
                 <th>
-                    Phone Number
+                  الوصف
                 </th>
                 <th>
-                    ExpectedTime
+                    زمن التسليم المتوقع
                 </th>
                 <th>
-                    Image
+                    صورة
                 </th>
             </tr>
         </thead>
@@ -259,23 +259,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Customer
+                    المشتري
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                    الاسم
                 </th>
                 <th>
-                    Phone Number
+                    رقم الهاتف
                 </th>
                 <th>
-                    Email
+                    الايميل
                 </th>
                 <th>
-                    Address
+                    العنوان
                 </th>
             </tr>
         </thead>
@@ -306,6 +306,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-controller="Disputes" asp-action="CustomerDisputes" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+        <a asp-controller="Disputes" asp-action="CustomerDisputes" asp-route-customerId="@UserManager.GetUserId(User)">عودة للقائمة</a>
     </form>
 </div>

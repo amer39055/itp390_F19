@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>قائمة الخدمات</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">فئة جديدة</a>
 </p>
 <table class="table table-striped table-bordered table-responsive">
     <tbody>
@@ -24,9 +24,9 @@
                     <a href="/Services/CompanyServices?SproviderId"> <img src="~/uploads/category/@item.Image" alt="@item.Image" style="width:160px; height:160px;" class="img-thumbnail" /></a>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
                 </td>
             </tr>
         }

@@ -4,13 +4,13 @@
     ViewData["Title"] = "CustomerDisputes";
 }
 
-<h2>Customer Disputes</h2>
+<h2>منازعات المستخدم</h2>
 
 <table class="table table-bordered table-hover table-striped table-responsive">
     <thead>
         <tr>
             <th>
-                Order Id
+                رقم الطلبية
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OpenedDate)
@@ -72,8 +72,8 @@
             </td>
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> | 
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> | 
+                <a asp-action="Delete" asp-route-id="@item.Id">الغاء</a>
             </td>
         </tr>
 }

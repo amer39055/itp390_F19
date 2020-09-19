@@ -9,30 +9,30 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>تفاصيل</h2>
 
 @*Order*@
 <table class="table table-bordered table-striped table-responsive">
     <thead>
         <tr>
             <th colspan="4">
-                Order
+                طلبية
             </th>
         </tr>
     </thead>
     <thead>
         <tr>
             <th>
-                Id
+               رقم الطلبية
             </th>
             <th>
-                Date
+                تاريخ
             </th>
             <th>
-                Notes
+                ملاحظات
             </th>
             <th>
-                Status
+                الحالة
             </th>
         </tr>
     </thead>
@@ -64,23 +64,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Service Provider Manager
+                    ادارة مزودي الخدمات
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                   الاسم
                 </th>
                 <th>
-                    Phone Number
+                    رقم الهاتف
                 </th>
                 <th>
-                    Email
+                    الايميل
                 </th>
                 <th>
-                    Address
+                    العنوان
                 </th>
             </tr>
         </thead>
@@ -112,23 +112,23 @@
     <thead>
         <tr>
             <th colspan="4">
-                Service Provider
+               بائع الخدمة
             </th>
         </tr>
     </thead>
     <thead>
         <tr>
             <th>
-                Category
+               الفئة
             </th>
             <th>
-                Name
+                الاسم
             </th>
             <th>
-                Rating
+                التصنيف
             </th>
             <th>
-                Image
+                الصورة
             </th>
         </tr>
     </thead>
@@ -171,23 +171,23 @@
     <thead>
         <tr>
             <th colspan="4">
-                Service
+                الخدمات
             </th>
         </tr>
     </thead>
     <thead>
         <tr>
             <th>
-                Name
+                اسم الخدمة
             </th>
             <th>
-                Phone Number
+                وصفها
             </th>
             <th>
-                ExpectedTime
+                زمن التسليم
             </th>
             <th>
-                Image
+                صورة
             </th>
         </tr>
     </thead>
@@ -217,23 +217,23 @@
     <thead>
         <tr>
             <th colspan="4">
-                Customer
+                الزبون
             </th>
         </tr>
     </thead>
     <thead>
         <tr>
             <th>
-                Name
+                الاسم
             </th>
             <th>
-                Phone Number
+                الهاتف
             </th>
             <th>
-                Email
+                ايميل
             </th>
             <th>
-                Address
+                العنوان
             </th>
         </tr>
     </thead>
@@ -266,7 +266,7 @@ else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Su
 }
 else if ((await AuthorizationService.AuthorizeAsync(User, "Admin_CustomerService")).Succeeded)
 {
-    <a asp-controller="Orders" asp-action="Index">Back to List</a>
+    <a asp-controller="Orders" asp-action="Index">عودة للقائمة</a>
 }
 <div>
 </div>

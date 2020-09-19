@@ -9,9 +9,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>تعديل</h2>
 
-<h4>Order</h4>
+<h4>طلبية</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -49,11 +49,11 @@
 <div>
     @if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
     {
-        <a asp-controller="Orders" asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">Back to List</a>
+        <a asp-controller="Orders" asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">عودة للقائمة</a>
     }
     else if ((await AuthorizationService.AuthorizeAsync(User, "ServiceProvider")).Succeeded)
     {
-        <a asp-controller="Orders" asp-action="ServiceProviderOrders" asp-route-SproviderId="@UserManager.GetUserId(User)">Back to List</a>
+        <a asp-controller="Orders" asp-action="ServiceProviderOrders" asp-route-SproviderId="@UserManager.GetUserId(User)">عودة للقائمة</a>
     }
 </div>
 

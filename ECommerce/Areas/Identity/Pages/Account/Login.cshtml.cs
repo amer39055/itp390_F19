@@ -39,13 +39,15 @@ namespace ECommerce.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name ="البريد الالكتروني")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name ="كلمة السر")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "هل تذكرني؟")]
             public bool RememberMe { get; set; }
         }
 

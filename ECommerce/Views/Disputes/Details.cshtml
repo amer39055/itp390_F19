@@ -9,10 +9,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>تفاصيل</h2>
 
 <div>
-    <h4>Dispute</h4>
+    <h4>المنازعات</h4>
     <hr />
 
     @*Dispute*@
@@ -20,23 +20,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Dispute
+                    النزاع
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Opened Date
+                    تاريخ الفتح
                 </th>
                 <th>
-                    Complaint
+                    المشتكي
                 </th>
                 <th>
-                    Result
+                    النتيجة
                 </th>
                 <th>
-                    Status
+                    الحالة الراهنة
                 </th>
             </tr>
         </thead>
@@ -68,23 +68,23 @@
             <thead>
                 <tr>
                     <th colspan="4">
-                        Abriter
+                        الحكم
                     </th>
                 </tr>
             </thead>
             <thead>
                 <tr>
                     <th>
-                        Name
+                        اسم الموظف
                     </th>
                     <th>
-                        Phone Number
+                        رقم الهاتف
                     </th>
                     <th>
-                        Email
+                        الايميل
                     </th>
                     <th>
-                        Address
+                        العنوان
                     </th>
                 </tr>
             </thead>
@@ -115,23 +115,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Order
+                    الطلبية
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Id
+                   رقم الطلبية
                 </th>
                 <th>
-                    Date
+                    تاريخ البدء
                 </th>
                 <th>
-                    Notes
+                    ملاحظات
                 </th>
                 <th>
-                    Status
+                    الحالة
                 </th>
             </tr>
         </thead>
@@ -161,26 +161,26 @@
         <thead>
             <tr>
                 <th colspan="5">
-                    Service Provider: @Model.Order.Service.Sprovider.CompanyName
+                    بائع الخدمة: @Model.Order.Service.Sprovider.CompanyName
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                   الاسم
                 </th>
                 <th>
-                    Phone Number
+                    الهاتف
                 </th>
                 <th>
                     Email
                 </th>
                 <th>
-                    Address
+                    العنوان
                 </th>
                 <th>
-                    Image
+                    صورة
                 </th>
             </tr>
         </thead>
@@ -213,23 +213,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Service
+                    الخدمة
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                    اسم الخدمة
                 </th>
                 <th>
-                    Phone Number
+                    وصفها
                 </th>
                 <th>
-                    ExpectedTime
+                    زمن التسليم
                 </th>
                 <th>
-                    Image
+                    صورة
                 </th>
             </tr>
         </thead>
@@ -259,23 +259,23 @@
         <thead>
             <tr>
                 <th colspan="4">
-                    Customer
+                    الزبون
                 </th>
             </tr>
         </thead>
         <thead>
             <tr>
                 <th>
-                    Name
+                    الاسم
                 </th>
                 <th>
-                    Phone Number
+                    رقم الهاتف
                 </th>
                 <th>
-                    Email
+                    الايميل
                 </th>
                 <th>
-                    Address
+                    العنوان
                 </th>
             </tr>
         </thead>
@@ -314,9 +314,9 @@
     {
         @if (Model.Status != "Closed" && UserManager.GetUserId(User) ==Model.ArbiterId )
         {
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id">تعديل</a>
             <span> | </span>
         }
-        <a asp-controller="Disputes" asp-action="Index">Back to List</a>
+        <a asp-controller="Disputes" asp-action="Index">عودة للقائمة</a>
     }
 </div>

@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Identity
+ï»¿@using Microsoft.AspNetCore.Identity
 @using Ecommerce.Models
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
@@ -12,12 +12,12 @@
 
             @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
             {
-                <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">ÇÖÇİÉ ãæÙİ</a></li>
-                <li><a asp-area="Identity" asp-page="/Account/Registersprovider">ÇÖÇİÉ ãŞÏã ÎÏãÉ</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">Ø§Ø¶Ø§ÙØ© Ù…ÙˆØ¸Ù</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/Registersprovider">Ø§Ø¶Ø§ÙØ© Ù…Ù‚Ø¯Ù… Ø®Ø¯Ù…Ø©</a></li>
             }
 
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">ÊÓÌíá ÎÑæÌ</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">ØªØ³Ø¬ÙŠÙ„ Ø®Ø±ÙˆØ¬</button>
             </li>
         </ul>
     </form>
@@ -28,13 +28,13 @@ else
     <ul class="nav navbar-nav navbar-right">
         @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
         {
-            <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">ÇÖÇİÉ ãæÙİ</a></li>
-            <li><a asp-area="Identity" asp-page="/Account/Registersprovider">ÇÖÇİÉ ãŞÏã ÎÏãÉ</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/RegisterAdmin">Ø§Ø¶Ø§ÙØ© Ù…ÙˆØ¸Ù</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Registersprovider">Ø§Ø¶Ø§ÙØ© Ù…Ù‚Ø¯Ù… Ø®Ø¯Ù…Ø©</a></li>
         }
         else
         {
-            <li><a asp-area="Identity" asp-page="/Account/Register">ÊÓÌíá ÌÏíÏ</a></li>
-            <li><a asp-area="Identity" asp-page="/Account/Login">ÊÓÌíá ÏÎæá</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Register">ØªØ³Ø¬ÙŠÙ„ Ø¬Ø¯ÙŠØ¯</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Login">ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„</a></li>
         }
 
 

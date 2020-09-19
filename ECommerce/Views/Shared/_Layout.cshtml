@@ -10,11 +10,12 @@
     
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ECommerce</title>
+    <title>@ViewData["Title"] - منصة مهن</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-rtl.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </environment>
@@ -22,6 +23,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-rtl.min.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
@@ -35,12 +37,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ECommerce</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">منصة مهن</a>
             </div>
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">الرئيسية</a></li>
                     @if ((await AuthorizationService.AuthorizeAsync(User, "Admin_CustomerService")).Succeeded)
                     {
                         <li><a asp-area="" asp-controller="Categories" asp-action="Index">فئات الخدمات</a></li>
@@ -50,7 +52,7 @@
                     }
                     else if ((await AuthorizationService.AuthorizeAsync(User, "Customer")).Succeeded)
                     {
-                        <li><a href="/#Categories">Categories</a></li>
+                        <li><a href="/#Categories">فئات الخدمات</a></li>
                         <li><a asp-area="" asp-controller="Orders" asp-action="CustomerOrders" asp-route-customerId="@UserManager.GetUserId(User)">طلبيات</a></li>
                         <li><a asp-area="" asp-controller="Disputes" asp-action="CustomerDisputes" asp-route-customerId="@UserManager.GetUserId(User)">منازعات</a></li>
                     }
@@ -80,7 +82,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2020 - ECommerce</p>
+            <p>&copy; 2020 - الجامعة الافتراضية السورية</p>
         </footer>
     </div>
 

@@ -21,11 +21,11 @@
                 <div class="col-md-3 thumbnail" style="height: 280px; width: 250px; margin: 10px; ">
                     <a asp-controller="Services" asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none;color:black">
                         <img src="~/uploads/service/@item.Image" style="height:175px; width:200px;" />
-                        <h3 style="text-align:center">@item.Name Services:</h3>
+                        <h3 style="text-align:center">@item.Name خدمات:</h3>
                     </a>
 
                     <h4>
-                        Price: @item.Price
+                        السعر: @item.Price
                     </h4>
                 </div>
             }
@@ -36,7 +36,7 @@ else
 {
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>Empty</h2>
+            <h2>فارغ</h2>
         </div>
     </div>
 }

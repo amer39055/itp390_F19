@@ -1,12 +1,12 @@
 ﻿@model ECommerce.Models.Order
 
 @{
-    ViewData["Title"] = "Rate";
+    ViewData["Title"] = "التقييمات";
 }
 
-<h2>Rate</h2>
+<h2>تقييم طلبية</h2>
 
-<h4>Order</h4>
+<h4>الطلبية</h4>
 <hr />
 
 <div class="row">
@@ -33,7 +33,7 @@
 </div>
 
 <div>
-    <a asp-action="CustomerOrders" asp-route-customerId="@Model.CustomerId">Back to List</a>
+    <a asp-action="CustomerOrders" asp-route-customerId="@Model.CustomerId">عودة</a>
 </div>
 
 @section Scripts {
